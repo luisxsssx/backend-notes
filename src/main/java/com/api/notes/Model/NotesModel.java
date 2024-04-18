@@ -22,13 +22,13 @@ public class NotesModel {
     private Long UUID;
 
     @Column(length = 255)
-    private String NOTE_BODY;
+    private String noteBody;
 
     @Column(length = 100)
     private String Title;
 
     @Column(name = "created_at")
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "update_at")
     private LocalDateTime updateAt;
@@ -36,4 +36,10 @@ public class NotesModel {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel user;
+
+    // Method to set creation date automatically
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 }

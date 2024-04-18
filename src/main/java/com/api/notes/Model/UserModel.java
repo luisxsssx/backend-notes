@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -23,18 +22,18 @@ public class UserModel {
     private Long UUID;
 
     @Column(unique = true)
-    private String Username;
+    private String username;
 
     @Column(length = 50)
-    private String FirstName;
+    private String first_name;
 
     @Column(length = 50)
-    private String LastName;
+    private String last_name;
 
-    @Column(length = 100)
-    private String Email;
+    @Column(length = 100, unique = true)
+    private String email;
 
-    private String Password;
+    private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<NotesModel> notes;
