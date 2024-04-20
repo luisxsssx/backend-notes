@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,29 +19,52 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "USER_DATA")
-public class UserModel {
+@Table(name = "USER_DATA", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
+public class UserModel implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long UUID;
+    Long UUID;
 
     @Column(unique = true)
-    private String username;
+    String username;
 
     @Column(length = 50)
-    private String first_name;
+    String first_name;
 
     @Column(length = 50)
-    private String last_name;
+    String last_name;
 
     @Column(length = 100, unique = true)
-    private String email;
+    String email;
 
-    private String password;
+    @Enumerated(EnumType.STRING)
+    Role role;
+
+    String password;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<NotesModel> notes;
+    public List<NotesModel> notes;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority((role.name())));
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

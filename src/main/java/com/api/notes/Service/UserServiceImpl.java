@@ -17,10 +17,10 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
 
     // save operation
-    @Override
+    /*@Override
     public UserModel saveUser(UserModel userModel) {
         return userRepo.save(userModel);
-    }
+    }*/
 
     // read operation
     @Override
@@ -28,10 +28,6 @@ public class UserServiceImpl implements UserService {
         return (List<UserModel>) userRepo.findAll();
     }
 
-    @Override
-    public UserModel updateUser(UserModel userModel) {
-        return null;
-    }
 
     // update operation
     @Override

@@ -19,23 +19,23 @@ public class NotesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long UUID;
+    Long UUID;
 
     @Column(length = 255)
-    private String noteBody;
+    String noteBody;
 
     @Column(length = 100)
-    private String Title;
+    String Title;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    LocalDateTime createdAt;
 
     @Column(name = "update_at")
-    private LocalDateTime updateAt;
+    LocalDateTime updateAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserModel user;
+    public UserModel user;
 
     // Method to set creation date automatically
     @PrePersist
