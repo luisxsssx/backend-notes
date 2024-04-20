@@ -17,13 +17,13 @@ public class UserController {
     @Autowired private UserService userService;
 
     // Save operation
-    @PostMapping("/saveUser")
+    /*@PostMapping("/saveUser")
     public UserModel saveUserModel(@Validated @RequestBody UserModel userModel) {
         return userService.saveUser(userModel);
-    }
+    }*/
 
     // Read operation
-    @GetMapping("users")
+    @PostMapping("users")
     public List<UserModel> fetchUserList() {
         return userService.fetchAllUsers();
     }

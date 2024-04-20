@@ -22,7 +22,7 @@ public class NoteController {
     }
 
     // Read note
-    @GetMapping("notes")
+    @PostMapping("notes")
     public List<NotesModel> fetchNotesList() {
         return noteService.fetchAllNotes();
     }
