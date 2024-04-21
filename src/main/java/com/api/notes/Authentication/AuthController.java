@@ -1,5 +1,7 @@
 package com.api.notes.Authentication;
 
+import com.api.notes.Model.Role;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +23,14 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(request));
     }
 
-    @PostMapping(value = "register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request){
-        return ResponseEntity.ok(authService.register(request));
+    @PostMapping(value = "register/user")
+    public ResponseEntity<AuthResponse> registerUser(@RequestBody RegisterRequest request){
+        return ResponseEntity.ok(authService.register(request, Role.USER));
+    }
+
+    @PostMapping(value = "register/admin")
+    public ResponseEntity<AuthResponse> registerAdmin(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request, Role.ADMIN));
     }
 
 }
