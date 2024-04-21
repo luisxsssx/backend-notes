@@ -32,14 +32,15 @@ public class AuthService {
 
     }
 
-    public AuthResponse register(RegisterRequest request) {
+    public AuthResponse register(RegisterRequest request, Role role) {
+
         UserModel user = UserModel.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode( request.getPassword()))
                 .first_name(request.getFirst_name())
                 .last_name(request.last_name)
                 .email(request.getEmail())
-                .role(Role.USER)
+                .role(role)
                 .build();
 
         userRepo.save(user);

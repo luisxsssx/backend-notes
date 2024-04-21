@@ -11,6 +11,8 @@ public interface UserService {
     //UserModel saveUser(UserModel userModel);
     List<UserModel> fetchAllUsers();
 
+    // Read user
+
    // UserModel updateUser(UserModel userModel);
 
     // update operation

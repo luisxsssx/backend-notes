@@ -1,5 +1,6 @@
 package com.api.notes.Authentication;
 
+import com.api.notes.Model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class RegisterRequest {
     String first_name;
     String last_name;
     String email;
+    Role role;
 }
