@@ -9,33 +9,33 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "DATA_NOTES")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "DATA_NOTES")
 public class NotesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long UUID;
+    private Long UUID;
 
     @Column(length = 255)
-    String noteBody;
+    private String noteBody;
 
     @Column(length = 100)
-    String Title;
+    private String Title;
 
     @Column(name = "created_at")
-    LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "update_at")
-    LocalDateTime updateAt;
+    private LocalDateTime updateAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    public UserModel user;
+    private UserModel user;
 
     // Method to set creation date automatically
     @PrePersist

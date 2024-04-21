@@ -9,7 +9,7 @@ import java.util.List;
 public interface NoteService {
     // CRUD operations
     // Save note
-    NotesModel saveNote(NotesModel notesModel);
+    NotesModel saveNote(NotesModel notesModel, Long userId);
 
     // Read note
     List<NotesModel> fetchAllNotes();

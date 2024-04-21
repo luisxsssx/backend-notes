@@ -14,38 +14,38 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+@Entity
+@Table(name = "USER_DATA", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "USER_DATA", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
 public class UserModel implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long UUID;
+    private Long UUID;
 
     @Column(unique = true)
-    String username;
+    private String username;
 
     @Column(length = 50)
-    String first_name;
+    private String first_name;
 
     @Column(length = 50)
-    String last_name;
+    private String last_name;
 
     @Column(length = 100, unique = true)
-    String email;
+    private String email;
 
     @Enumerated(EnumType.STRING)
-    Role role;
+    private Role role;
 
-    String password;
+    private String password;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    public List<NotesModel> notes;
+    private List<NotesModel> notes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

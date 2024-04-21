@@ -1,6 +1,7 @@
 package com.api.notes.Controller;
 
 import com.api.notes.Model.NotesModel;
+import com.api.notes.Model.UserModel;
 import com.api.notes.Service.NoteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class NoteController {
 
     // Save note
     @PostMapping("/saveNote")
-    public NotesModel saveNoteModel(@Validated @RequestBody NotesModel notesModel) {
-        return noteService.saveNote(notesModel);
+    public NotesModel saveNoteModel(@Validated @RequestBody NotesModel notesModel, @RequestParam("userId") Long userId) {
+        return noteService.saveNote(notesModel, userId);
     }
 
     // Read note
-    @PostMapping("notes")
+    @GetMapping("notes")
     public List<NotesModel> fetchNotesList() {
         return noteService.fetchAllNotes();
     }
@@ -35,7 +36,7 @@ public class NoteController {
 
     // Delete note
     @DeleteMapping("/del_notes/{id}")
-    public String delteNotesById(@PathVariable("id") Long notesId) {
+    public String deleteNotesById(@PathVariable("id") Long notesId) {
         noteService.deleteNoteById(notesId);
         return "Deleted Successfully";
     }
