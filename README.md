@@ -18,7 +18,7 @@ Clone the project and access it
 Install the project
 
 ```bash
-  mvn spring-boot: build
+  mvn spring-boot:build
 
   mvn spring-boot:run
 ```
