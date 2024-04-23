@@ -2,12 +2,11 @@ package com.api.notes.Controller;
 
 import com.api.notes.JWT.JwtService;
 import com.api.notes.Model.NotesModel;
-import com.api.notes.Model.UserModel;
 import com.api.notes.Service.NoteService;
 
-import com.api.notes.Service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +29,11 @@ public class NoteController {
 
     // Read note
     @GetMapping("notes")
-    public List<NotesModel> fetchNotesList() {
-        return noteService.fetchAllNotes();
+    public List<NotesModel> fetchNotesList(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        Long userId = jwtService.getUserIdFromToken(token.substring(7));
+        return noteService.fetchAllNotes(userId);
+
     }
 
     // Update note
@@ -43,9 +45,12 @@ public class NoteController {
     }
 
     // Delete note
-    @DeleteMapping("/del_notes/{id}")
-    public String deleteNotesById(@PathVariable("id") Long notesId) {
-        noteService.deleteNoteById(notesId);
-        return "Deleted Successfully";
+    @DeleteMapping("/dl/{id}")
+    public ResponseEntity<String> deleteNote(@PathVariable("id") Long noteId, HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        Long userId = jwtService.getUserIdFromToken(token.substring(7));
+        noteService.deleteNoteById(noteId, userId);
+        return ResponseEntity.ok("Note deleted successfully");
     }
+
 }

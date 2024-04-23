@@ -41,10 +41,6 @@ public class NotesModel {
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
-    }
-
-    @PrePersist
-    protected void onUpdate() {
         updateAt = LocalDateTime.now();
     }
 }
