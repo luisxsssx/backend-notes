@@ -20,7 +20,7 @@ public class NoteController {
     @Autowired private JwtService jwtService;
 
     // Save note
-    @PostMapping("/saveNote")
+    @PostMapping("/sv")
     public NotesModel saveNoteModel(@Validated @RequestBody NotesModel notesModel, HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         Long userId = jwtService.getUserIdFromToken(token.substring(7));
@@ -28,7 +28,7 @@ public class NoteController {
     }
 
     // Read note
-    @GetMapping("notes")
+    @GetMapping("read")
     public List<NotesModel> fetchNotesList(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         Long userId = jwtService.getUserIdFromToken(token.substring(7));
@@ -37,7 +37,7 @@ public class NoteController {
     }
 
     // Update note
-    @PutMapping("/notes/{id}")
+    @PutMapping("/upd/{id}")
     public NotesModel updateNotes(@RequestBody NotesModel notesModel, @PathVariable("id") Long notesId, HttpServletRequest request)  {
         String token = request.getHeader("Authorization");
         Long userId = jwtService.getUserIdFromToken(token.substring(7));

@@ -15,26 +15,20 @@ public class UserController {
     // Annotation
     @Autowired private UserService userService;
 
-    // Save operation
-    /*@PostMapping("/saveUser")
-    public UserModel saveUserModel(@Validated @RequestBody UserModel userModel) {
-        return userService.saveUser(userModel);
-    }*/
-
     // Read operation
-    @PostMapping("users")
+    @GetMapping("usr")
     public List<UserModel> fetchUserList() {
         return userService.fetchAllUsers();
     }
 
     // Update operation
-    @PutMapping("/users/{id}")
+    @PutMapping("/usr/{id}")
     public UserModel userModel(@RequestBody UserModel userModel, @PathVariable("id") Long userId) {
         return userService.updateUser(userModel, userId);
     }
 
     // Delete operation
-    @DeleteMapping("/del_users/{id}")
+    @DeleteMapping("/dl/{id}")
     public String deleteUserById(@PathVariable("id") Long userId){
         userService.deleteUserById(userId);
         return "Deleted Successfully";
