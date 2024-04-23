@@ -1,5 +1,6 @@
 package com.api.notes.Service;
 
+import com.api.notes.JWT.JwtService;
 import com.api.notes.Model.NotesModel;
 import com.api.notes.Model.UserModel;
 import com.api.notes.Repository.NoteRepo;
@@ -18,6 +19,7 @@ public class NoteServiceImpl implements NoteService {
     private NoteRepo noteRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired private JwtService jwtService;
 
     // Save Note
     @Override
@@ -40,7 +42,7 @@ public class NoteServiceImpl implements NoteService {
 
     // Update Note
     @Override
-    public NotesModel updateNotes(NotesModel notesModel, Long noteId) {
+    public NotesModel updateNotes(NotesModel notesModel, Long noteId, Long userId) {
         NotesModel noteDB = noteRepo.findById(Math.toIntExact(noteId)).get();
 
         if(Objects.nonNull(notesModel.getTitle()) && !"".equalsIgnoreCase(notesModel.getTitle())) {

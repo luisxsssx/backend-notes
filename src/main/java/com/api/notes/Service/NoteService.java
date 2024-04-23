@@ -15,7 +15,7 @@ public interface NoteService {
     List<NotesModel> fetchAllNotes();
 
     // Update note
-    NotesModel updateNotes(NotesModel notesModel, Long noteId);
+    NotesModel updateNotes(NotesModel notesModel, Long noteId, Long userId);
 
     // Delete note
     void deleteNoteById(Long noteId);
