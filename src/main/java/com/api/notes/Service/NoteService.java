@@ -12,11 +12,11 @@ public interface NoteService {
     NotesModel saveNote(NotesModel notesModel, Long userId);
 
     // Read note
-    List<NotesModel> fetchAllNotes();
+    List<NotesModel> fetchAllNotes(Long userId);
 
     // Update note
     NotesModel updateNotes(NotesModel notesModel, Long noteId, Long userId);
 
     // Delete note
-    void deleteNoteById(Long noteId);
+    void deleteNoteById(Long noteId, Long userId);
 }
