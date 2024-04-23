@@ -41,6 +41,7 @@ public class UserModel implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(length = 15, unique = true)
     private String password;
 
     @OneToMany(mappedBy = "user")
@@ -51,6 +52,7 @@ public class UserModel implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority((role.name())));
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
