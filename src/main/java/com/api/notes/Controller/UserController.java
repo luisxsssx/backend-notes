@@ -1,5 +1,6 @@
 package com.api.notes.Controller;
 
+import com.api.notes.JWT.JwtService;
 import com.api.notes.Model.UserModel;
 import com.api.notes.Service.UserService;
 
