@@ -1,7 +1,7 @@
 package com.api.notes.JWT;
 
 import com.api.notes.Model.UserModel;
-import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -83,5 +83,4 @@ public class JwtService {
     {
         return getExpiration(token).before(new Date());
     }
-
 }
